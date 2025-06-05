@@ -53,8 +53,8 @@ abstract class UserDatabase : RoomDatabase() {
             // Migrate the database to an encrypted one if it is currently unencrypted
             if (state == SQLCipherUtils.State.UNENCRYPTED) {
                 SQLCipherUtils.migrateToEncryptedDatabase(DATABASE_NAME, context, userPassphrase)
-                Log.d("MAIN TEST", state.toString())
             }
+            Log.d("MAIN TEST", state.toString())
 
             // Create or retrieve the database instance
             if (instance == null) {

@@ -99,7 +99,7 @@ object SQLCipherUtils {
                 // Rename the temporary file to the original file name
                 newFile.renameTo(originalFile)
             }.onFailure {
-                Log.e("DatabaseMigration", "Error migrating database", it)
+                Log.e("MAIN TEST DatabaseMigration", "Error migrating database", it)
             }
         }
     }
