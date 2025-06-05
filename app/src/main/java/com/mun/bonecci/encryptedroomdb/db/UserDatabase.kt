@@ -1,6 +1,7 @@
 package com.mun.bonecci.encryptedroomdb.db
 
 import android.content.Context
+import android.util.Log
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
@@ -27,7 +28,7 @@ abstract class UserDatabase : RoomDatabase() {
     companion object {
         // Database instance variable
         private var instance: UserDatabase? = null
-        private const val DATABASE_NAME = "user_database.db"
+        private const val DATABASE_NAME = "user_database"
 
         /**
          * Singleton pattern to obtain an instance of the encrypted UserDatabase.
@@ -51,6 +52,7 @@ abstract class UserDatabase : RoomDatabase() {
             // Migrate the database to an encrypted one if it is currently unencrypted
             if (state == SQLCipherUtils.State.UNENCRYPTED) {
                 SQLCipherUtils.migrateToEncryptedDatabase(DATABASE_NAME, context, userPassphrase)
+                Log.d("MAIN TEST", state.toString())
             }
 
             // Create or retrieve the database instance
