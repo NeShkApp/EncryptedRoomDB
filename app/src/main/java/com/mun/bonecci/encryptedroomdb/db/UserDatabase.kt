@@ -4,12 +4,14 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.mun.bonecci.encryptedroomdb.data.User
 
 /**
  * Room database class representing the user database.
  */
-@Database(entities = [User::class], version = 1, exportSchema = false)
+@Database(entities = [User::class], version = 2, exportSchema = false)
 abstract class UserDatabase : RoomDatabase() {
     /**
      * Provides access to the UserDao interface for database operations.
@@ -25,6 +27,12 @@ abstract class UserDatabase : RoomDatabase() {
         // Database instance variable
         private var instance: UserDatabase? = null
 
+        val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("ALTER TABLE user ADD COLUMN age INTEGER")
+                database.execSQL("ALTER TABLE user ADD COLUMN isActive INTEGER NOT NULL DEFAULT 1")
+            }
+        }
         /**
          * Returns the singleton instance of the UserDatabase.
          *
@@ -38,7 +46,8 @@ abstract class UserDatabase : RoomDatabase() {
                 instance = Room.databaseBuilder(
                     context.applicationContext, UserDatabase::class.java,
                     "user_database"
-                ).fallbackToDestructiveMigration().build()
+                ).addMigrations(MIGRATION_1_2)
+                    .build()
             }
             return instance!!
         }

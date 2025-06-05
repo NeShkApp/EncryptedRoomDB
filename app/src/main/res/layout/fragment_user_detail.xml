@@ -78,7 +78,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:ellipsize="marquee"
                 android:maxLines="2"
@@ -102,11 +102,26 @@
                 android:textAlignment="center"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/userAgeText"
                 app:layout_constraintEnd_toEndOf="@+id/userNameTextView"
                 app:layout_constraintStart_toStartOf="@+id/userNameTextView"
                 app:layout_constraintTop_toBottomOf="@+id/userNameTextView"
                 tools:text="User email" />
+
+            <TextView
+                android:id="@+id/userAgeText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:ellipsize="marquee"
+                android:maxLines="1"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/userEmailTextView"
+                app:layout_constraintStart_toStartOf="@+id/userEmailTextView"
+                tools:text="User age" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

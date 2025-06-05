@@ -66,7 +66,7 @@ class UserListAdapter(private val clickListener: OnClickListener, private val co
         @SuppressLint("SetTextI18n")
         fun bind(item: User, position: Int) {
             val circle = "●"
-            binding.labelTextView.text = "${item.name} $circle ${item.email}"
+            binding.labelTextView.text = "${item.name} $circle ${item.email} $circle ${item.age}"
             binding.deleteButton.apply {
                 visibility = View.VISIBLE
                 setOnClickListener {

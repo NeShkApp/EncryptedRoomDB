@@ -21,7 +21,8 @@ class GenerateRandomUserUseCase {
             val userRandomId = Random.nextInt(0, 7)
             val user = fakeUserList.getOrNull(userRandomId) ?: User(
                 name = "Generic",
-                email = "generic@email"
+                email = "generic@email",
+                age = 1
             )
             emit(Result.Success(user))
         } catch (e: Exception) {
@@ -44,11 +45,11 @@ class GenerateRandomUserUseCase {
  * A list of fake users for generating random users.
  */
 private val fakeUserList: List<User> = mutableListOf<User>().apply {
-    add(User(name = "A", email = "@gmail.com"))
-    add(User(name = "B", email = "@outlook.com"))
-    add(User(name = "C", email = "@hotmail.com"))
-    add(User(name = "D", email = "@outlook.com"))
-    add(User(name = "E", email = "@gmail.com"))
-    add(User(name = "F", email = "@hotmail.com"))
-    add(User(name = "G", email = "@gmail.com"))
+    add(User(name = "A", email = "@gmail.com", age = 1))
+    add(User(name = "B", email = "@outlook.com", age = 2))
+    add(User(name = "C", email = "@hotmail.com", age = 3))
+    add(User(name = "D", email = "@outlook.com", age = 4))
+    add(User(name = "E", email = "@gmail.com", age = 5))
+    add(User(name = "F", email = "@hotmail.com", age = 6))
+    add(User(name = "G", email = "@gmail.com", age = 7))
 }

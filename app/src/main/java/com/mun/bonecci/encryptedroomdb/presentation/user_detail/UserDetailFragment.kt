@@ -89,6 +89,7 @@ class UserDetailFragment : Fragment() {
     private fun setUserData(user: User) {
         binding.userNameTextView.text = "Name: ${user.name}"
         binding.userEmailTextView.text = "Email: ${user.email}"
+        binding.userAgeText.text = "Age: ${user.age}"
         binding.userIDTextView.text = user.id.toString()
         binding.iconImage.setImageDrawable(
             ContextCompat.getDrawable(
