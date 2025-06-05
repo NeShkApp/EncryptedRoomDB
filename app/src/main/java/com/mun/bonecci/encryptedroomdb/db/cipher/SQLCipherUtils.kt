@@ -1,9 +1,9 @@
 package com.mun.bonecci.encryptedroomdb.db.cipher
 
 import android.content.Context
+import android.database.sqlite.SQLiteException
 import android.util.Log
 import net.sqlcipher.database.SQLiteDatabase
-import net.sqlcipher.database.SQLiteException
 import java.io.File
 
 object SQLCipherUtils {
