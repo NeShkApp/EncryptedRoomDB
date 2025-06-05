@@ -1,6 +1,6 @@
 package com.mun.bonecci.encryptedroomdb.presentation
 
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.User
 
 /**
  * Represents the state of user data.

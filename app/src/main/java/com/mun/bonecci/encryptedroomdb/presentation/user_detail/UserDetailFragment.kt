@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.mun.bonecci.encryptedroomdb.R
 import com.mun.bonecci.encryptedroomdb.commons.ToolbarButtonVisibilityListener
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.User
 import com.mun.bonecci.encryptedroomdb.databinding.FragmentUserDetailBinding
 import com.mun.bonecci.encryptedroomdb.presentation.UserViewModel
 

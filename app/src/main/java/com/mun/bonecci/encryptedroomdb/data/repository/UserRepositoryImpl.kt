@@ -1,6 +1,6 @@
 package com.mun.bonecci.encryptedroomdb.data.repository
 
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.User
 import com.mun.bonecci.encryptedroomdb.db.UserDao
 import com.mun.bonecci.encryptedroomdb.db.UserDatabase
 import com.mun.bonecci.encryptedroomdb.domain.repository.UserRepository

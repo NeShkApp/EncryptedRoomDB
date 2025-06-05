@@ -6,12 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.Log
+import com.mun.bonecci.encryptedroomdb.data.models.Session
+import com.mun.bonecci.encryptedroomdb.data.models.User
 
 /**
  * Room database class representing the user database.
  */
-@Database(entities = [User::class], version = 2, exportSchema = false)
+@Database(
+    entities = [
+        User::class,
+        Session::class,
+        Log::class
+               ],
+    version = 3,
+    exportSchema = false
+)
 abstract class UserDatabase : RoomDatabase() {
     /**
      * Provides access to the UserDao interface for database operations.
@@ -19,18 +29,44 @@ abstract class UserDatabase : RoomDatabase() {
      * @return The UserDao instance.
      */
     abstract fun userDao(): UserDao
+    abstract fun sessionDao(): SessionDao
+    abstract fun logDao(): LogDao
 
     /**
      * Companion object for accessing the database instance.
      */
     companion object {
-        // Database instance variable
-        private var instance: UserDatabase? = null
+        @Volatile private var instance: UserDatabase? = null
 
         val MIGRATION_1_2 = object : Migration(1, 2) {
             override fun migrate(database: SupportSQLiteDatabase) {
                 database.execSQL("ALTER TABLE user ADD COLUMN age INTEGER")
                 database.execSQL("ALTER TABLE user ADD COLUMN isActive INTEGER NOT NULL DEFAULT 1")
+            }
+        }
+        val MIGRATION_2_3 = object : Migration(2, 3) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                // Створюємо таблицю session
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS session (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        userId INTEGER NOT NULL,
+                        startedAt INTEGER NOT NULL,
+                        endedAt INTEGER
+                    )
+                    """.trimIndent()
+                )
+                // Створюємо таблицю log
+                database.execSQL(
+                    """
+                    CREATE TABLE IF NOT EXISTS log (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                        message TEXT NOT NULL,
+                        timestamp INTEGER NOT NULL
+                    )
+                    """.trimIndent()
+                )
             }
         }
         /**
@@ -41,15 +77,15 @@ abstract class UserDatabase : RoomDatabase() {
          */
         @Synchronized
         fun getInstance(context: Context): UserDatabase {
-            if (instance == null) {
-                // Create database instance if it doesn't exist
-                instance = Room.databaseBuilder(
+            return instance ?: synchronized(this) {
+                val db = Room.databaseBuilder(
                     context.applicationContext, UserDatabase::class.java,
                     "user_database"
-                ).addMigrations(MIGRATION_1_2)
+                ).addMigrations(MIGRATION_1_2, MIGRATION_2_3)
                     .build()
+                instance = db
+                db
             }
-            return instance!!
         }
     }
 }

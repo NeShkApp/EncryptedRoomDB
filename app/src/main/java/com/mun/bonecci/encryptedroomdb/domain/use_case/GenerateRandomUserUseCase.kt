@@ -2,7 +2,7 @@ package com.mun.bonecci.encryptedroomdb.domain.use_case
 
 import kotlin.random.Random
 import com.mun.bonecci.encryptedroomdb.commons.Result
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.User
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow

@@ -6,7 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.mun.bonecci.encryptedroomdb.data.User
+import com.mun.bonecci.encryptedroomdb.data.models.User
 import com.mun.bonecci.encryptedroomdb.data.repository.UserRepositoryImpl
 import kotlinx.coroutines.launch
 import com.mun.bonecci.encryptedroomdb.commons.Result

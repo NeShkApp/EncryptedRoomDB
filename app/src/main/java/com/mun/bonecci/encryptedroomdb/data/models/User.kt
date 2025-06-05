@@ -1,4 +1,4 @@
-package com.mun.bonecci.encryptedroomdb.data
+package com.mun.bonecci.encryptedroomdb.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
