@@ -41,6 +41,7 @@ abstract class UserDatabase : RoomDatabase() {
         fun getInstance(context: Context): UserDatabase {
             // Get the user passphrase and convert it to a byte array
             val userPassphrase = PassPhraseUtils.getPassphrase(context)
+            Log.d("MAIN TEST PassPhrase:", userPassphrase)
             val passphrase = userPassphrase.toByteArray()
 
             // Check the state of the database encryption
